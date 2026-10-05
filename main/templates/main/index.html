@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Барбершоп "Бритва & Стиль"</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+</head>
+<body>
+
+    <!-- Шапка сайта с названием -->
+    <header>
+        <div class="logo">
+            <!-- Название барбершопа -->
+            <a href="#">Бритва & Стиль</a>
+        </div>
+    </header>
+
+    <!-- Первый (главный) экран сайта -->
+    <main>
+        <section class="hero-screen">
+            <!-- Заголовок первого экрана -->
+            <h1>Мужские стрижки и классическое бритье</h1>
+            
+            <!-- Небольшой текст -->
+            <p>Создаем безупречный стиль для уверенных в себе мужчин. Опытные мастера, премиальная косметика и атмосфера настоящего мужского клуба.</p>
+            
+            <!-- Кнопка «Записаться» -->
+            <button type="button" class="btn-booking">Записаться</button>
+        </section>
+    </main>
+
+</body>
+</html>

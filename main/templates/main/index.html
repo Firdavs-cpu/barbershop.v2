@@ -25,6 +25,13 @@
             
             <!-- Небольшой текст -->
             <p>Создаем безупречный стиль для уверенных в себе мужчин. Опытные мастера, премиальная косметика и атмосфера настоящего мужского клуба.</p>
+
+               {% for service in services %}
+            <div class="service-card">
+                <h3>{{ service.name }}</h3>
+                <p>{{ service.price }}р</p>
+            </div>
+            {% endfor %}
             
             <!-- Кнопка «Записаться» -->
             <button type="button" class="btn-booking">Записаться</button>

@@ -1,7 +1,11 @@
 from django.shortcuts import render
+from .models import Service
 
 
 def home(request):
-    return render(request, 'main/index.html')
+    services = Service.objects.all()
+    context = {
+    'services' : services
+}
+    return render(request, 'main/index.html', context)
 
-# Create your views here.

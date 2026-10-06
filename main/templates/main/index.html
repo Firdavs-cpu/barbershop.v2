@@ -17,6 +17,10 @@
         </div>
     </header>
 
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+
     <!-- Первый (главный) экран сайта -->
     <main>
         <section class="hero-screen">
@@ -32,11 +36,32 @@
                 <p>{{ service.price }}р</p>
             </div>
             {% endfor %}
-            
-            <!-- Кнопка «Записаться» -->
-            <button type="button" class="btn-booking">Записаться</button>
+
+
+            <!-- запись клиента -->
+    <form method="POST">
+        {% csrf_token %}
+        <select name="service">
+            {% for service in services %}
+            <option value="{{service.id}}">{{service.name}}</option>
+            {% endfor %}
+
+        </select>
+        <input type="text" name="name">
+        <input type="text" name="phone">
+        <input type="datetime-local" name="date">
+                    <!-- Кнопка «Записаться» -->
+        <button type="submit" class="btn-booking">Записаться</button>
+    </form>
+
+
         </section>
     </main>
 
 </body>
 </html>
+
+
+            <!-- <option value="1">Мужская стрижка</option>
+            <option value="2">Стрижка бороды</option>
+            <option value="3">Классическое бритьё</option> -->

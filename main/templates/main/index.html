@@ -17,9 +17,7 @@
         </div>
     </header>
 
-    {% for message in messages %}
-    <p>{{ message }}</p>
-    {% endfor %}
+
 
     <!-- Первый (главный) экран сайта -->
     <main>
@@ -27,8 +25,14 @@
             <!-- Заголовок первого экрана -->
             <h1>Мужские стрижки и классическое бритье</h1>
             
+
             <!-- Небольшой текст -->
             <p>Создаем безупречный стиль для уверенных в себе мужчин. Опытные мастера, премиальная косметика и атмосфера настоящего мужского клуба.</p>
+
+
+                {% for message in messages %}
+                <p class="success-message">{{ message }}</p>
+                {% endfor %}
 
                {% for service in services %}
             <div class="service-card">
@@ -39,17 +43,11 @@
 
 
             <!-- запись клиента -->
-    <form method="POST">
+    <form method="POST" class="booking-form">
         {% csrf_token %}
-        <select name="service">
-            {% for service in services %}
-            <option value="{{service.id}}">{{service.name}}</option>
-            {% endfor %}
 
-        </select>
-        <input type="text" name="name">
-        <input type="text" name="phone">
-        <input type="datetime-local" name="date">
+
+        {{ form }}
                     <!-- Кнопка «Записаться» -->
         <button type="submit" class="btn-booking">Записаться</button>
     </form>
@@ -60,8 +58,3 @@
 
 </body>
 </html>
-
-
-            <!-- <option value="1">Мужская стрижка</option>
-            <option value="2">Стрижка бороды</option>
-            <option value="3">Классическое бритьё</option> -->

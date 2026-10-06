@@ -1,26 +1,23 @@
-from django.shortcuts import render
-from .models import Service, Booking
+from django.shortcuts import render, redirect
+from .models import Service
 from django.contrib import messages
+from .forms import BookingForm
 
 
 def home(request):
-    services = Service.objects.all()  
+    services = Service.objects.all()
+    form = BookingForm()
     if request.method == 'POST':
-        service_id = request.POST["service"]
-        service = Service.objects.get(id=service_id)
-        name = request.POST["name"]
-        phone = request.POST["phone"]
-        date = request.POST["date"]
-        booking = Booking(
-        name=name,
-        phone=phone,
-        service=service,
-        date=date
-    )   
-        booking.save()
-        messages.success(request, "Вы успешно записались")
+        form = BookingForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Вы успешно записались")
+            return redirect('/')
     context = {
-    'services' : services
+    'services' : services,
+    'form':form
+
 }
     return render(request, 'main/index.html', context)
 

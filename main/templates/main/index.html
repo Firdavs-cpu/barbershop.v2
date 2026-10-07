@@ -1,60 +1,252 @@
+
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Барбершоп "Бритва & Стиль"</title>
+
+    <title>Бритва & Стиль — Барбершоп</title>
+
     <link rel="stylesheet" href="{% static 'main/style.css' %}">
 </head>
+
 <body>
 
-    <!-- Шапка сайта с названием -->
-    <header>
-        <div class="logo">
-            <!-- Название барбершопа -->
-            <a href="#">Бритва & Стиль</a>
+<header class="header">
+    <div class="container header-content">
+
+        <a href="#" class="logo">
+            БРИТВА<span>&</span>СТИЛЬ
+        </a>
+
+        <nav class="navigation">
+            <a href="#services">Услуги</a>
+            <a href="#booking">Запись</a>
+        </nav>
+
+        <a href="#booking" class="header-button">
+            Записаться
+        </a>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-overlay"></div>
+
+        <div class="container hero-content">
+
+            <p class="hero-label">
+                BARBERSHOP • САНКТ-ПЕТЕРБУРГ
+            </p>
+
+            <h1>
+                ТВОЙ СТИЛЬ.
+                <br>
+                ТВОИ ПРАВИЛА.
+            </h1>
+
+            <p class="hero-description">
+                Мужские стрижки, оформление бороды и классическое
+                бритьё. Работаем на качество, а не на поток.
+            </p>
+
+            <a href="#booking" class="main-button">
+                Записаться сейчас
+            </a>
+
         </div>
-    </header>
+
+    </section>
 
 
+    <!-- SERVICES -->
 
-    <!-- Первый (главный) экран сайта -->
-    <main>
-        <section class="hero-screen">
-            <!-- Заголовок первого экрана -->
-            <h1>Мужские стрижки и классическое бритье</h1>
-            
+    <section class="services" id="services">
 
-            <!-- Небольшой текст -->
-            <p>Создаем безупречный стиль для уверенных в себе мужчин. Опытные мастера, премиальная косметика и атмосфера настоящего мужского клуба.</p>
+        <div class="container">
+
+            <div class="section-heading">
+
+                <p class="section-label">
+                    ПРАЙС
+                </p>
+
+                <h2>
+                    НАШИ УСЛУГИ
+                </h2>
+
+                <p>
+                    Выбери услугу и доверь свой стиль профессионалам.
+                </p>
+
+            </div>
 
 
-                {% for message in messages %}
-                <p class="success-message">{{ message }}</p>
+            <div class="services-grid">
+
+                {% for service in services %}
+
+                <div class="service-card">
+
+                    <div class="service-number">
+                        0{{ forloop.counter }}
+                    </div>
+
+                    <div class="service-info">
+
+                        <h3>
+                            {{ service.name }}
+                        </h3>
+
+                        <p>
+                            Профессиональная работа мастера
+                        </p>
+
+                    </div>
+
+                    <div class="service-price">
+                        {{ service.price }} ₽
+                    </div>
+
+                </div>
+
                 {% endfor %}
 
-               {% for service in services %}
-            <div class="service-card">
-                <h3>{{ service.name }}</h3>
-                <p>{{ service.price }}р</p>
             </div>
-            {% endfor %}
+
+        </div>
+
+    </section>
 
 
-            <!-- запись клиента -->
-    <form method="POST" class="booking-form">
-        {% csrf_token %}
+    <!-- ABOUT -->
+
+    <section class="about">
+
+        <div class="container about-content">
+
+            <div class="about-title">
+
+                <p class="section-label">
+                    О БАРБЕРШОПЕ
+                </p>
+
+                <h2>
+                    НЕ ПРОСТО
+                    <br>
+                    СТРИЖКА.
+                </h2>
+
+            </div>
+
+            <div class="about-text">
+
+                <p>
+                    «Бритва & Стиль» — место для мужчин,
+                    которые ценят аккуратность, качество
+                    и индивидуальный подход.
+                </p>
+
+                <p>
+                    Наши мастера помогут подобрать стрижку,
+                    оформить бороду и создать образ,
+                    который подходит именно тебе.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-        {{ form }}
-                    <!-- Кнопка «Записаться» -->
-        <button type="submit" class="btn-booking">Записаться</button>
-    </form>
+    <!-- BOOKING -->
+
+    <section class="booking" id="booking">
+
+        <div class="container booking-container">
+
+            <div class="booking-heading">
+
+                <p class="section-label">
+                    ОНЛАЙН-ЗАПИСЬ
+                </p>
+
+                <h2>
+                    ЗАПИШИСЬ
+                    <br>
+                    К МАСТЕРУ
+                </h2>
+
+                <p>
+                    Заполни форму, и мы свяжемся с тобой
+                    для подтверждения записи.
+                </p>
+
+            </div>
 
 
-        </section>
-    </main>
+            <div class="booking-form-wrapper">
+
+                {% for message in messages %}
+
+                    <div class="success-message">
+                        {{ message }}
+                    </div>
+
+                {% endfor %}
+
+
+                <form method="POST" class="booking-form">
+
+                    {% csrf_token %}
+
+                    {{ form }}
+
+                    <button type="submit" class="form-button">
+                        Записаться
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="container footer-content">
+
+        <div class="logo">
+            БРИТВА<span>&</span>СТИЛЬ
+        </div>
+
+        <p>
+            © 2026 Бритва & Стиль
+        </p>
+
+        <p>
+            Санкт-Петербург
+        </p>
+
+    </div>
+
+</footer>
 
 </body>
 </html>
+```
